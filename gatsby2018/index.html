@@ -52,6 +52,10 @@
           </li>
         </ul>
       </div>
+
+      <span class="navbar-text">
+        目前的IP為：<span id="text_ip"></span>
+      </span>
     </nav>
 
     <main role="main" class="container">
@@ -109,6 +113,13 @@
           $this.text("已投票");
 
         });
+      });
+
+      // JS get IP
+      $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
+        // console.log(JSON.stringify(data, null, 2));
+        // console.log(data.geobytesipaddress);
+        $("#text_ip").text(data.geobytesipaddress);
       });
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
