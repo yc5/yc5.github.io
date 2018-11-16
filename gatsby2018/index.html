@@ -116,10 +116,8 @@
       });
 
       // JS get IP
-      $.getJSON('http://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
-        // console.log(JSON.stringify(data, null, 2));
-        // console.log(data.geobytesipaddress);
-        $("#text_ip").text(data.geobytesipaddress);
+      $.getJSON('https://api.ipify.org/?format=json', function(data) {
+        $("#text_ip").text(data.ip);
       });
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
