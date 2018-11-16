@@ -54,7 +54,7 @@
       </div>
 
       <span class="navbar-text">
-        目前的IP為：<span id="text_ip">未取得</span>
+        目前的IP為：<span id="text_ip">取得中...</span>
       </span>
     </nav>
 
@@ -118,6 +118,8 @@
       // JS get IP
       $.getJSON('https://api.ipify.org/?format=json', function(data) {
         $("#text_ip").text(data.ip);
+      }).fail(function() {
+        $("#text_ip").text("無法取得");
       });
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
