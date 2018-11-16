@@ -1,1 +1,124 @@
-<h1>Hi</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>幫幫雅黑之快速投票系統</title>
+<meta name="Description" content="使用這套系統投票，您只需要點一下投票按鈕，可以節省尋找作品的時間。">
+
+    <style>
+     *{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+     }
+     body {
+        padding-top: 5rem;
+      }
+      .starter-template {
+        padding: 3rem 1.5rem;
+        text-align: center;
+      }
+      .flag{
+        width: 1.25em;
+        display: inline-block;
+        line-height: 24px;
+        vertical-align: baseline;
+        padding-right: 4px;
+      }
+      h3{
+        line-height: 24px;
+        font-size-adjust: 100%;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">幫幫雅黑</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>幫幫雅黑之快速投票系統</h1>
+        <p class="lead">使用這套系統投票，您只需要點一下投票按鈕，可以節省尋找作品的時間。</p>
+        <p>
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="vote">投票</button>
+        </p>
+        <p id="msg"></p>
+        <article class="card post-2598 cm type-cm status-publish hentry country-tw" role="article">
+        <a href="https://award.gatsby.jp/wp/wp-content/themes/gca/lib/work/cm/tw/2017.mp4" target="_blank"><img src="https://award.gatsby.jp/wp/wp-content/themes/gca/lib/work/cm/tw/2017.jpg" class="img-thumbnail" alt=""></a>
+        <h3 class="h5"><img class="flag" src="https://award.gatsby.jp/wp/wp-content/themes/gca/lib/img/common/flag/tw.png">鄭雅云<a href="https://award.gatsby.jp/tw/vote/cm/" target="_blank">造訪原始網站</a></h3>
+        </div>
+      </article>
+
+      </div>
+
+    </main><!-- /.container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+      $("#vote").click(function( event ){
+        // Stop form from submitting normally
+        event.preventDefault();
+       
+        // Get some values from elements on the page:
+        var url = "https://award.gatsby.jp/wp/wp-admin/admin-ajax.php";
+       
+        // Send the data using post
+        var posting = $.post( url, 
+          { 
+            action:"wti_like_post_process_vote",
+            nonce:"8a7349a9c7",
+            post_id:2598,
+            task:"like" 
+          } 
+        );
+        var $this = $(this);
+        $this.text("稍等，正在向Gatsby傳送投票請求");
+        // Put the results in a div
+        posting.done(function( data ) {
+          // $("p#msg").append("<div class='alert alert-success' role='alert'> "+data+" </div>");
+          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功"+" </div>");
+        });
+        posting.fail(function(){
+          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，未接收回應。"+" </div>");
+          $this.text("已投票");
+          $this.attr("disabled", true);
+
+        });
+      });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-24449663-8"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-24449663-8');
+	</script>
+  </body>
+</html>
