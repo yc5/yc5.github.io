@@ -98,6 +98,7 @@
         );
         var $this = $(this);
         $this.text("稍等，正在向Gatsby傳送投票請求");
+        $this.attr("disabled", true);
         // Put the results in a div
         posting.done(function( data ) {
           // $("p#msg").append("<div class='alert alert-success' role='alert'> "+data+" </div>");
@@ -106,7 +107,6 @@
         posting.fail(function(){
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，未接收回應。"+" </div>");
           $this.text("已投票");
-          $this.attr("disabled", true);
 
         });
       });
