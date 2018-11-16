@@ -65,6 +65,7 @@
         <!-- <p class="lead">使用這套系統投票，您只需要點一下投票按鈕，可以節省尋找作品的時間。投票票數一個IP僅計算一次。</p> -->
         <p class="lead">請幫我們按一下投票按鈕，當成功訊息跳出即完成投票，投票票數一個IP僅計算一次，感激不盡。</p>
         
+        <p id="msg"></p>
         <p>
           <button type="button" class="btn btn-primary btn-lg btn-block" id="vote">投票</button>
         </p>
@@ -90,7 +91,6 @@
           </div>
         </div>
 
-        <p id="msg"></p>
         
         <a href="https://award.gatsby.jp/wp/wp-content/themes/gca/lib/work/cm/tw/2017.mp4" target="_blank">
           <img src="shot1.png" class="img-thumbnail" alt="">
@@ -134,7 +134,7 @@
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功"+" </div>");
         });
         posting.fail(function(){
-          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，未接收回應。"+" </div>");
+          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，謝謝你的幫忙！"+" </div>");
           $this.text("已投票");
 
         });
