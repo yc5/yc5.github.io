@@ -154,24 +154,11 @@
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功"+" </div>");
         });
         posting.fail(function(){
-          // Get votes amount
-          var v =  "Unknown";
-          $.ajax({
-              url: "https://xstar.me/to/20181110-g/handle.php", 
-              cache: false,
-              async: false,
-              success: function(response) {
-                  result = $(response).find(".lc-2598.lc");
-                  // alert(response); // works as expected (returns all html)
-                  v = result[0].textContent;
-                  console.log(v); // returns [object Object]
-              }
-          });
 
           // var tmp = get_votes_amount(); // Async problem
           $("p#msg").append("<div class='alert alert-success' role='alert'> 投票成功，謝謝你的幫忙！</div>");
           $this.text("已投票");
-          $("#text_votes").text(v);
+          get_votes_amount();
 
         });
       });
@@ -183,7 +170,19 @@
         $("#text_ip").text("無法取得");
       });
 
-
+      // Get votes amount
+      function get_votes_amount(){
+        var v =  "Unknown";
+        $.ajax({
+            url: "https://xstar.me/to/20181110-g/handle.php", 
+            cache: false,
+            success: function(response) {
+                result = $(response).find(".lc-2598.lc");
+                v = result[0].textContent;
+                $("#text_votes").text(v);
+            }
+        });
+      }
       
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
