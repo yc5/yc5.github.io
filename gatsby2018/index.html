@@ -60,8 +60,11 @@
         </ul>
       </div>
 
-      <span class="navbar-text">
+      <span class="navbar-text" style="margin-right: 1em">
         目前的IP為：<span id="text_ip">取得中...</span>
+      </span>
+      <span class="navbar-text">
+        目前票數：<span id="text_votes">尚未投票</span>
       </span>
     </nav>
 
@@ -143,7 +146,7 @@
           } 
         );
         var $this = $(this);
-        $this.text("稍等，正在向Gatsby傳送投票請求");
+        $this.text("正在傳送投票請求");
         $this.attr("disabled", true);
         // Put the results in a div
         posting.done(function( data ) {
@@ -151,8 +154,24 @@
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功"+" </div>");
         });
         posting.fail(function(){
-          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，謝謝你的幫忙！"+" </div>");
+          // Get votes amount
+          var v =  "Unknown";
+          $.ajax({
+              url: "https://xstar.me/to/20181110-g/handle.php", 
+              cache: false,
+              async: false,
+              success: function(response) {
+                  result = $(response).find(".lc-2598.lc");
+                  // alert(response); // works as expected (returns all html)
+                  v = result[0].textContent;
+                  console.log(v); // returns [object Object]
+              }
+          });
+
+          // var tmp = get_votes_amount(); // Async problem
+          $("p#msg").append("<div class='alert alert-success' role='alert'> 投票成功，謝謝你的幫忙！</div>");
           $this.text("已投票");
+          $("#text_votes").text(v);
 
         });
       });
@@ -163,6 +182,9 @@
       }).fail(function() {
         $("#text_ip").text("無法取得");
       });
+
+
+      
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-24449663-8"></script>
