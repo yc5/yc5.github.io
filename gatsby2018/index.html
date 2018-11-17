@@ -144,14 +144,14 @@
         var url = "https://award.gatsby.jp/wp/wp-admin/admin-ajax.php";
        
         // Send the data using post
-        var posting = $.post( url, 
-          { 
-            action:"wti_like_post_process_vote",
-            nonce:"8a7349a9c7",
-            post_id:2598,
-            task:"like" 
-          } 
-        );
+        var posting = jQuery.ajax({
+             type : "post",
+             async : false,
+             dataType : "json",
+             url : url,
+             data : {action: "wti_like_post_process_vote", task : "like", post_id : "2598", nonce: "b11b7a2b5a"}
+        });
+
         var $this = $(this);
         $this.text("正在傳送投票請求");
         $this.attr("disabled", true);
