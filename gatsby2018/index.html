@@ -156,9 +156,14 @@
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，Gatsby已開放CROS。"+" </div>");
         });
         posting.fail(function(){
-
+          // Show success message
+          var msg_success =  $("<div></div>").text("投票成功，謝謝你的幫忙！");
+          msg_success.addClass("alert alert-success");
+          msg_success.attr("role", "alert");
+          $("p#msg").append(msg_success);
+          msg_success.delay(4000).fadeOut(300, function(){ $(this).remove();});
+          
           // var tmp = get_votes_amount(); // Async problem
-          $("p#msg").append("<div class='alert alert-success' role='alert'> 投票成功，謝謝你的幫忙！</div>");
           $this.after("<button type='button' class='btn btn-warning btn-lg btn-block' id='revote'>不同IP重投</button>");
           $("button#revote").bind("click", revote);
           $this.text("已投票");
@@ -168,6 +173,7 @@
       });
       function revote( event ){
         console.log('Clicked');
+        get_current_ip();
 
         // Stop form from submitting normally
         event.preventDefault();
@@ -194,8 +200,13 @@
         });
         posting.fail(function(){
 
-          // var tmp = get_votes_amount(); // Async problem
-          $("p#msg").append("<div class='alert alert-success' role='alert'> 投票成功，謝謝你的幫忙！</div>");
+          // Show success message
+          var msg_success =  $("<div></div>").text("投票成功，謝謝你的幫忙！");
+          msg_success.addClass("alert alert-success");
+          msg_success.attr("role", "alert");
+          $("p#msg").append(msg_success);
+          msg_success.delay(4000).fadeOut(300, function(){ $(this).remove();});
+
           $this.text("不同IP重投");
           $this.attr("disabled", false);
           get_votes_amount();
@@ -207,11 +218,14 @@
 
 
       // JS get IP
-      $.getJSON('https://api.ipify.org/?format=json', function(data) {
-        $("#text_ip").text(data.ip);
-      }).fail(function() {
-        $("#text_ip").text("無法取得");
-      });
+      function get_current_ip(){
+        $.getJSON('https://api.ipify.org/?format=json', function(data) {
+          $("#text_ip").text(data.ip);
+        }).fail(function() {
+          $("#text_ip").text("無法取得");
+        });
+      };
+      get_current_ip();
 
       // Get votes amount
       function get_votes_amount(){
