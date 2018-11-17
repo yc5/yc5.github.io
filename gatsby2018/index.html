@@ -131,6 +131,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <script>
+      var vote_times = 0;
       $("button#vote").click(function( event ){
         // Stop form from submitting normally
         event.preventDefault();
@@ -171,7 +172,8 @@
           $this.removeClass("btn-primary");
           $this.addClass("btn-warning");
           get_votes_amount();
-
+          if(vote_times>0){get_current_ip();}
+          vote_times++;
         });
       });
       
