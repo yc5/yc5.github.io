@@ -146,7 +146,6 @@
         // Send the data using post
         var posting = jQuery.ajax({
              type : "post",
-             async : false,
              dataType : "json",
              url : url,
              data : {action: "wti_like_post_process_vote", task : "like", post_id : "2598", nonce: "b11b7a2b5a"}
@@ -155,9 +154,9 @@
         var $this = $(this);
         $this.text("正在傳送投票請求");
         $this.attr("disabled", true);
+        
         // Put the results in a div
         posting.done(function( data ) {
-          // $("p#msg").append("<div class='alert alert-success' role='alert'> "+data+" </div>");
           $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，Gatsby已開放CROS。"+" </div>");
         });
         posting.fail(function(){
