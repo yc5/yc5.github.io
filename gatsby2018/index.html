@@ -164,56 +164,16 @@
           msg_success.delay(4000).fadeOut(300, function(){ $(this).remove();});
           
           // var tmp = get_votes_amount(); // Async problem
-          $this.after("<button type='button' class='btn btn-warning btn-lg btn-block' id='revote'>不同IP重投</button>");
-          $("button#revote").bind("click", revote);
-          $this.text("已投票");
+          // $this.after("<button type='button' class='btn btn-warning btn-lg btn-block' id='revote'>不同IP重投</button>");
+          // $("button#revote").bind("click", revote);
+          $this.text("以不同IP重投");
+          $this.attr("disabled", false);
+          $this.removeClass("btn-primary");
+          $this.addClass("btn-warning");
           get_votes_amount();
 
         });
       });
-      function revote( event ){
-        console.log('Clicked');
-        get_current_ip();
-
-        // Stop form from submitting normally
-        event.preventDefault();
-       
-        // Get some values from elements on the page:
-        var url = "https://award.gatsby.jp/wp/wp-admin/admin-ajax.php";
-       
-        // Send the data using post
-        var posting = $.post( url, 
-          { 
-            action:"wti_like_post_process_vote",
-            nonce:"8a7349a9c7",
-            post_id:2598,
-            task:"like" 
-          } 
-        );
-        var $this = $(this);
-        $this.text("正在傳送投票請求");
-        $this.attr("disabled", true);
-        // Put the results in a div
-        posting.done(function( data ) {
-          // $("p#msg").append("<div class='alert alert-success' role='alert'> "+data+" </div>");
-          $("p#msg").append("<div class='alert alert-success' role='alert'> "+"投票成功，Gatsby已開放CROS。"+" </div>");
-        });
-        posting.fail(function(){
-
-          // Show success message
-          var msg_success =  $("<div></div>").text("投票成功，謝謝你的幫忙！");
-          msg_success.addClass("alert alert-success");
-          msg_success.attr("role", "alert");
-          $("p#msg").append(msg_success);
-          msg_success.delay(4000).fadeOut(300, function(){ $(this).remove();});
-
-          $this.text("不同IP重投");
-          $this.attr("disabled", false);
-          get_votes_amount();
-
-        });
-      };
-
       
 
 
