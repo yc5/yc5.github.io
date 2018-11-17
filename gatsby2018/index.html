@@ -64,7 +64,7 @@
         目前的IP為：<span id="text_ip">取得中...</span>
       </span>
       <span class="navbar-text">
-        目前票數：<span id="text_votes">尚未投票</span>
+        <span id="text_votes"></span>
       </span>
     </nav>
 
@@ -179,7 +179,7 @@
             success: function(response) {
                 result = $(response).find(".lc-2598.lc");
                 v = result[0].textContent;
-                $("#text_votes").text(v);
+                $("#text_votes").text("目前票數：" + v);
             }
         });
       }
