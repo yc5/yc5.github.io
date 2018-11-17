@@ -133,6 +133,7 @@
     <script>
       var vote_times = 0;
       $("button#vote").click(function( event ){
+        if(vote_times>0){get_current_ip();}
         // Stop form from submitting normally
         event.preventDefault();
        
@@ -172,7 +173,6 @@
           $this.removeClass("btn-primary");
           $this.addClass("btn-warning");
           get_votes_amount();
-          if(vote_times>0){get_current_ip();}
           vote_times++;
         });
       });
