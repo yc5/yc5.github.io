@@ -58,6 +58,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">台灣鄭雅云團隊 <span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link">識別碼：<span id="text_nonce"></span></a>
+          </li>
         </ul>
       </div>
 
@@ -133,6 +136,8 @@
     <script>
     jQuery(document).ready(function(){
       var vote_times = 0;
+      var nonce = "db509575e8";
+      $("#text_nonce").text(nonce);
       $("button#vote").click(function( event ){
         // if(vote_times>0){get_current_ip();}
         get_current_ip();
@@ -148,7 +153,7 @@
              type : "post",
              dataType : "json",
              url : url,
-             data : {action: "wti_like_post_process_vote", task : "like", post_id : "2598", nonce: "72fad8cb00"}
+             data : {action: "wti_like_post_process_vote", task : "like", post_id : "2598", nonce: nonce}
         });
 
         var $this = $(this);
@@ -199,8 +204,10 @@
           cache: false,
           success: function(response) {
               result = $(response).find(".lc-2598.lc");
+              nonce = $(response).find(".like-2598").data("nonce");
               v = result[0].textContent;
               $("#text_votes").text("目前票數：" + v);
+              $("#text_nonce").text(nonce);
           }
       });
     }
