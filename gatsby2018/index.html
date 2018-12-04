@@ -155,7 +155,8 @@
         event.preventDefault();
        
         // Get some values from elements on the page:
-        var url = "https://award.gatsby.jp/wp/wp-admin/admin-ajax.php";
+        // var url = "https://award.gatsby.jp/wp/wp-admin/admin-ajax.php";
+        var url = ".";
        
         // Send the data using post
         var posting = jQuery.ajax({
@@ -175,8 +176,8 @@
         });
         posting.fail(function(){
           // Show success message
-          var msg_success =  $("<div></div>").text("投票成功，謝謝你的幫忙！");
-          msg_success.addClass("alert alert-success");
+          var msg_success =  $("<div></div>").text("投票失敗，投票時間已截止。");
+          msg_success.addClass("alert alert-danger");
           msg_success.attr("role", "alert");
           $("p#msg").append(msg_success);
           msg_success.delay(5500).fadeOut(300, function(){ $(this).remove();});
@@ -209,12 +210,14 @@
     function get_votes_amount(){
       var v =  "Unknown";
       $.ajax({
-          url: "https://xstar.me/to/20181110-g/handle.php", 
+          // url: "https://xstar.me/to/20181110-g/handle.php", 
+          url: ".", 
           cache: false,
           success: function(response) {
-              result = $(response).find(".lc-2598.lc");
+              /*result = $(response).find(".lc-2598.lc");
               nonce = $(response).find(".like-2598").data("nonce");
-              v = result[0].textContent;
+              v = result[0].textContent;*/
+              v = 2448;
               $("#text_votes").text("目前票數：" + v);
               $("#text_nonce").text(nonce);
           }
