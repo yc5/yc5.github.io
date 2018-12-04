@@ -185,10 +185,10 @@
           // var tmp = get_votes_amount(); // Async problem
           // $this.after("<button type='button' class='btn btn-warning btn-lg btn-block' id='revote'>不同IP重投</button>");
           // $("button#revote").bind("click", revote);
-          $this.text("重新投票");
+          $this.text("投票");
           $this.attr("disabled", false);
-          $this.removeClass("btn-primary");
-          $this.addClass("btn-warning");
+          // $this.removeClass("btn-primary");
+          // $this.addClass("btn-warning");
           get_votes_amount();
           vote_times++;
         });
